@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Mini Games</string>
     <string name="flappyCircleName">Flappy Circle</string>
+    <string name="sideDoteName">Side Dote</string>
 </resources>

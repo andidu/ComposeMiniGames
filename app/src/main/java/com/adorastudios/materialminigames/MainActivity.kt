@@ -16,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import com.adorastudios.materialminigames.presentation.Screens
 import com.adorastudios.materialminigames.presentation.flappyCircle.FlappyCircleScreen
 import com.adorastudios.materialminigames.presentation.mainScreen.MainScreen
+import com.adorastudios.materialminigames.presentation.sideDote.SideDoteScreen
 import com.adorastudios.materialminigames.ui.theme.MaterialMiniGamesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -65,6 +66,11 @@ class MainActivity : ComponentActivity() {
                             route = Screens.FlappyCircle.route,
                         ) {
                             FlappyCircleScreen()
+                        }
+                        composable(
+                            route = Screens.SideDote.route,
+                        ) {
+                            SideDoteScreen()
                         }
                     }
                 }

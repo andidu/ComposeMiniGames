@@ -26,9 +26,14 @@ import com.adorastudios.materialminigames.R
 import com.adorastudios.materialminigames.presentation.Screens
 import com.adorastudios.materialminigames.presentation.flappyCircle.BlockData
 import com.adorastudios.materialminigames.presentation.flappyCircle.CircleData
-import com.adorastudios.materialminigames.presentation.flappyCircle.EnvData
 import com.adorastudios.materialminigames.presentation.flappyCircle.FlappyCircle
 import com.adorastudios.materialminigames.presentation.flappyCircle.FlappyCircleState
+import com.adorastudios.materialminigames.presentation.sideDote.DoteData
+import com.adorastudios.materialminigames.presentation.sideDote.SideDote
+import com.adorastudios.materialminigames.presentation.sideDote.SideDoteState
+import com.adorastudios.materialminigames.presentation.sideDote.SpineData
+import com.adorastudios.materialminigames.presentation.flappyCircle.EnvData as FlappyCircleEnvData
+import com.adorastudios.materialminigames.presentation.sideDote.EnvData as SideDoteEnvData
 
 @Composable
 fun MainScreen(
@@ -73,12 +78,61 @@ fun MainScreen(
                             circle = CircleData(
                                 positionY = height / 2,
                             ),
-                            env = EnvData(
+                            env = FlappyCircleEnvData(
                                 height = height,
                                 width = width,
                                 blocks = listOf(
                                     BlockData.randomBlock(10, width - 3 * height / 10, height / 10),
                                 ),
+                            ),
+                            unitSize = height / 10,
+                        ),
+                    )
+                }
+            }
+        }
+        item {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(100.dp)
+                    .clip(MaterialTheme.shapes.medium)
+                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .clickable {
+                        navController.navigate(Screens.SideDote.route)
+                    },
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    modifier = Modifier.weight(1.5f),
+                    text = stringResource(id = R.string.sideDoteName),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.titleLarge,
+                )
+                BoxWithConstraints(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(8.dp),
+                ) {
+                    val width = with(LocalDensity.current) { maxWidth.toPx() }
+                    val height = with(LocalDensity.current) { maxHeight.toPx() }
+                    SideDote(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clip(MaterialTheme.shapes.small)
+                            .background(MaterialTheme.colorScheme.background),
+                        state = SideDoteState(
+                            dote = DoteData(
+                                positionX = width / 2,
+                                positionY = height / 2,
+                                speedX = 0f,
+                                speedY = 0f,
+                            ),
+                            env = SideDoteEnvData(
+                                height = height,
+                                width = width,
+                                leftSpines = SpineData.randomSpines(height, height / 10),
+                                rightSpines = SpineData.randomSpines(height, height / 10),
                             ),
                             unitSize = height / 10,
                         ),
